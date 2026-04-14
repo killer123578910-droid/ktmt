@@ -1,36 +1,23 @@
-.Model Small
+.Model small
 .Stack 100H
 .Data
-    CRLF DB 13,10,'$'
-    MSG1 DB 'fuck you!$'
-    MSG2 DB 'you suck$'
-    word DB 'k'
-
 .Code
-MAIN Proc
-    Mov AX,@Data
-    Mov DS,AX
+MAIN proc
+    mov ax,@data
+    mov ds,ax
+    
+    mov bx,600
+    mov ax,0x4240
+    
+    mov dx,0xF
+    div bx
     
     
-    Mov AH,8
-    INT 21H
     
     
-    Mov DL,AL  
-    Mov AH,2
-    INT 21H
-    
-    
-    Mov AH,9
-    Lea DX,CRLF
-    INT 21H
-    
-    
-    Mov AH,9
-    Lea DX,MSG2
-    INT 21H
-    
-    Mov AH,4CH
-    INT 21H
-  MAIN Endp
-   
+    mov ah,4ch
+    int 21h
+   MAIN endp
+
+
+
