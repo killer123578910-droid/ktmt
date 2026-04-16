@@ -45,7 +45,7 @@ break:
    
 delop:
     pop ax
-    mov dh,0
+    ;mov dh,0
     mov dl,al
     mov ah,2
     int 21h
