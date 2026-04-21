@@ -1,0 +1,101 @@
+.model small
+.stack 100h
+.data
+list db 1,2,3,4,3,2,5,6,7,"$"
+crlf db 13,10,'$'
+maxx db "max: $"
+minn db "min: $"
+.code
+endl proc
+push ax
+push dx
+
+mov ah,9
+lea dx,crlf
+int 21h
+
+pop dx
+pop ax
+ret
+endl endp
+
+
+insau proc
+mov ah,9
+int 21h
+ret
+insau endp
+
+
+inso proc
+mov ax,dx
+mov dx,0
+mov bx,10
+mov cx,0
+lapin:
+div bx
+
+add dx,"0"
+push dx
+inc cx
+
+cmp ax,0
+jg lapin
+popo:
+pop dx
+mov ah,2
+int 21h
+loop popo
+ret
+inso endp
+
+
+
+
+
+
+timmax proc
+lea si,list
+mov dx,0
+lap:
+cmp [si],"$"
+je break
+
+cmp [si],dx
+jle skip
+
+mov dx,[si]
+
+skip:
+inc si
+jmp lap
+
+break:
+call inso
+ret
+timmax endp
+
+
+
+
+
+
+main proc
+mov ax,@data
+mov ds,ax
+
+lea dx,maxx
+call insau
+call endl
+
+call timmax
+
+
+
+
+
+mov ah,4ch
+int 21h
+main endp
+end main
+
