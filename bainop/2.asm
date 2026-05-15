@@ -8,15 +8,15 @@ main proc
     mov ds,ax
     
     mov ah,1
-    int 21h
+    int 21h   ;nhap 1 ki tu
     mov bl,al
     
     mov ah,9
-    lea dx,crlf
+    lea dx,crlf ; nhap cach dong
     int 21h
     
     mov dl,bl
-    mov ah,2 
+    mov ah,2   ; in ki tu
     int 21h
     
     mov ah,4ch

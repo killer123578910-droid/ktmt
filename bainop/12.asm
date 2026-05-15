@@ -37,7 +37,7 @@ lap1:
     push dx
     inc cx
     cmp ax,0
-    jne lap1      ; ?? s?a ? dây
+    jne lap1
 inre:
     pop dx
     mov ah,2

@@ -4,8 +4,6 @@
     crlf db 13,10,'$'
     a db 50 dup('$')
     b db 50 dup('$')
-    tb1 db 'Nhap chuoi A: $'
-    tb2 db 13,10,'Nhap chuoi B: $'
     yes db 13,10,'Co tai vi tri: $'
     no db 13,10,'Khong co$'
 .code
