@@ -1,3 +1,4 @@
+
 .model small
 .stack 100h
 .data
@@ -22,7 +23,6 @@ main proc
     mov ax,@data
     mov ds,ax
     
-    ;xor cx,cx
     lea si,xau
     
 nhap:
@@ -31,21 +31,12 @@ nhap:
     
     cmp al,13
     je xong
-    
-    cmp al,'a'
-    jl inn
-    cmp al,'z'
-    jg inn
-    
-    sub al,32
-    
-inn:
     mov [si],al
     inc si
     jmp nhap
 xong:
+    mov [si],'$'
     call endl
-    mov [si], '$'
     mov ah,9
     lea dx,xau
     int 21h
