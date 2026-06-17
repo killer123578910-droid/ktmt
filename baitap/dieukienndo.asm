@@ -1,0 +1,29 @@
+.model small
+org 100h
+.code
+
+jmp start
+
+start:
+    in al,125
+    
+    cmp al,30
+    jle Bat
+    cmp al,50
+    jge tat
+    jmp xong
+    
+bat:
+    mov al,1
+    out 127,al
+    jmp xong
+tat:
+    xor al,al
+    out 127,al
+    jmp xong
+xong:
+    jmp start
+end start
+    
+
+
