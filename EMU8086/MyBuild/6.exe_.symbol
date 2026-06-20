@@ -1,0 +1,18 @@
+< THE SYMBOL TABLE >  6.exe_  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+STACK                    	00000     	-5        	SEGMENT   	(ITSELF)  
+DATA                     	00010     	-5        	SEGMENT   	(ITSELF)  
+CRLF                     	00000     	1         	VAR       	data      
+NG                       	00003     	1         	VAR       	data      
+STR                      	0000B     	1         	VAR       	data      
+CODE                     	00011     	-5        	SEGMENT   	(ITSELF)  
+MAIN                     	00000     	-1        	NEAR      	code      
+LAP                      	0000B     	-1        	LABEL     	code      
+BREAK                    	0001A     	-1        	LABEL     	code      
+DELOP                    	00028     	-1        	LABEL     	code      
+===================================================================================================
+[ 4/5/2026  --  4:03:09 PM ] 
+< END >
+ 

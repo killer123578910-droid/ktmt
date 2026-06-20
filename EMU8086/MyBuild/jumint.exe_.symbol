@@ -1,0 +1,16 @@
+< THE SYMBOL TABLE >  jumint.exe_  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+STACK                    	00000     	-5        	SEGMENT   	(ITSELF)  
+DATA                     	00010     	-5        	SEGMENT   	(ITSELF)  
+NG1                      	00000     	1         	VAR       	data      
+NG2                      	00002     	1         	VAR       	data      
+CODE                     	00011     	-5        	SEGMENT   	(ITSELF)  
+MAIN                     	00000     	-1        	NEAR      	code      
+NG1E                     	00016     	-1        	LABEL     	code      
+KETTHUC                  	0001D     	-1        	LABEL     	code      
+===================================================================================================
+[ 9/4/2026  --  3:32:09 PM ] 
+< END >
+ 

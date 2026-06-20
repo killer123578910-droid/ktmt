@@ -1,0 +1,177 @@
+EMU8086 GENERATED LISTING. MACHINE CODE <- SOURCE.
+ 
+19.exe_ -- emu8086 assembler version: 4.08  
+ 
+[ 4/5/2026  --  4:24:22 PM ] 
+ 
+===================================================================================================
+[LINE]     LOC: MACHINE CODE                          SOURCE
+===================================================================================================
+ 
+[   1]        :                                       .model small
+[   2]        :                                       .stack 100h
+[   3]        :                                       .data
+[   4]    0100: 0D 0A 24                              crlf db 13,10,'$'
+[   5]    0103: 24 24 24 24 24 24 24 24 24 24 24 24   a db 50 dup('$')
+                24 24 24 24 24 24 24 24 24 24 24 24 
+                24 24 24 24 24 24 24 24 24 24 24 24 
+                24 24 24 24 24 24 24 24 24 24 24 24 
+                24 24                               
+[   6]    0135: 24 24 24 24 24 24 24 24 24 24 24 24   b db 50 dup('$')
+                24 24 24 24 24 24 24 24 24 24 24 24 
+                24 24 24 24 24 24 24 24 24 24 24 24 
+                24 24 24 24 24 24 24 24 24 24 24 24 
+                24 24                               
+[   7]    0167: 0D 0A 43 6F 20 74 61 69 20 76 69 20   yes db 13,10,'Co tai vi tri: $'
+                74 72 69 3A 20 24                   
+[   8]    0179: 0D 0A 4B 68 6F 6E 67 20 63 6F 24      no db 13,10,'Khong co$'
+[   9]        :                                       .code
+[  10]        :                                       
+[  11]    0190:                                       endl proc
+[  12]    0190: B4 09                                 mov ah,9
+[  13]    0192: CD 21                                 int 21h
+[  14]    0194: C3                                    ret
+[  15]        :                                       endl endp
+[  16]        :                                       
+[  17]    0195:                                       inso proc
+[  18]    0195: BB 0A 00                              mov bx,10
+[  19]    0198: B9 00 00                              mov cx,0
+[  20]    019B:                                       lap1:
+[  21]    019B: 33 D2                                 xor dx,dx
+[  22]    019D: F7 F3                                 div bx
+[  23]    019F: 52                                    push dx
+[  24]    01A0: 41                                    inc cx
+[  25]    01A1: 3D 00 00                              cmp ax,0
+[  26]    01A4: 77 F5                                 ja lap1
+[  27]    01A6:                                       lap2:
+[  28]    01A6: 5A                                    pop dx
+[  29]    01A7: 80 C2 30                              add dl,'0'
+[  30]    01AA: B4 02                                 mov ah,2
+[  31]    01AC: CD 21                                 int 21h
+[  32]    01AE: E2 F6                                 loop lap2
+[  33]    01B0: C3                                    ret
+[  34]        :                                       inso endp
+[  35]        :                                       
+[  36]    01B1:                                       nhapxau proc
+[  37]    01B1:                                       lapnhap:
+[  38]    01B1: B4 01                                 mov ah,1
+[  39]    01B3: CD 21                                 int 21h
+[  40]        :                                       
+[  41]    01B5: 3C 0D                                 cmp al,13
+[  42]    01B7: 74 06                                 je ende
+[  43]        :                                       
+[  44]    01B9: 88 04                                 mov [si],al
+[  45]    01BB: 41                                    inc cx
+[  46]    01BC: 46                                    inc si
+[  47]    01BD: EB F2                                 jmp lapnhap
+[  48]    01BF:                                       ende:
+[  49]    01BF: C6 04 24                              mov [si],'$'
+[  50]    01C2: C3                                    ret
+[  51]        :                                       nhapxau endp
+[  52]        :                                       
+[  53]    01C3:                                       main proc
+[  54]    01C3: B8 10 00                              mov ax,@data
+[  55]    01C6: 8E D8                                 mov ds,ax
+[  56]        :                                       
+[  57]    01C8: BE 03 00                              lea si,a
+[  58]    01CB: 33 C9                                 xor cx,cx
+[  59]    01CD: E8 E1 FF                              call nhapxau
+[  60]        :                                       
+[  61]    01D0: BA 00 00                              lea dx,crlf
+[  62]    01D3: E8 BA FF                              call endl
+[  63]        :                                       
+[  64]    01D6: BE 35 00                              lea si,b
+[  65]    01D9: 33 C9                                 xor cx,cx
+[  66]    01DB: E8 D3 FF                              call nhapxau
+[  67]        :                                       
+[  68]    01DE: BB 00 00                              mov bx,0
+[  69]        :                                       
+[  70]    01E1:                                       ngoai:
+[  71]    01E1: BE 03 00                              lea si,a
+[  72]    01E4: 03 F3                                 add si,bx
+[  73]    01E6: BF 35 00                              lea di,b
+[  74]        :                                       
+[  75]    01E9:                                       trong:
+[  76]    01E9: 8A 05                                 mov al,[di]
+[  77]    01EB: 3C 24                                 cmp al,'$'
+[  78]    01ED: 74 0F                                 je found
+[  79]        :                                       
+[  80]    01EF: 8A 24                                 mov ah,[si]
+[  81]    01F1: 80 FC 24                              cmp ah,'$'
+[  82]    01F4: 74 1E                                 je notfound
+[  83]        :                                       
+[  84]    01F6: 3A E0                                 cmp ah,al
+[  85]    01F8: 75 11                                 jne next
+[  86]        :                                       
+[  87]    01FA: 46                                    inc si
+[  88]    01FB: 47                                    inc di
+[  89]    01FC: EB EB                                 jmp trong
+[  90]        :                                       
+[  91]    01FE:                                       found:
+[  92]    01FE: BA 67 00                              lea dx,yes
+[  93]    0201: E8 8C FF                              call endl
+[  94]    0204: 8B C3                                 mov ax,bx
+[  95]    0206: E8 8C FF                              call inso
+[  96]    0209: EB 0F                                 jmp exit
+[  97]        :                                       
+[  98]    020B:                                       next:
+[  99]    020B: 43                                    inc bx
+[ 100]    020C: 80 7F 03 24                           cmp byte ptr a[bx],'$'
+[ 101]    0210: 74 02                                 je notfound
+[ 102]    0212: EB CD                                 jmp ngoai
+[ 103]        :                                       
+[ 104]    0214:                                       notfound:
+[ 105]    0214: BA 79 00                              lea dx,no
+[ 106]    0217: E8 76 FF                              call endl
+[ 107]        :                                       
+[ 108]    021A:                                       exit:
+[ 109]    021A: B4 4C                                 mov ah,4ch
+[ 110]    021C: CD 21                                 int 21h
+[ 111]        :                                       main endp
+[ 112]        :                                       end main
+[ 113]        :                                       
+ 
+===================================================================================================
+ 
+EXE HEADER - bytes from 0000 to 01FF inclusive.
+
+0000: 4D      -   exe signature (M)
+0001: 5A      -   exe signature (Z)
+0002: 1E      -   bytes on last page (l.byte)
+0003: 00      -   bytes on last page (h.byte)
+0004: 03      -   512 byte pages in file (l.byte)
+0005: 00      -   512 byte pages in file (h.byte)
+0006: 01      -   relocations (l.byte)
+0007: 00      -   relocations (h.byte)
+0008: 20      -   paragraphs in header (l.byte)
+0009: 00      -   paragraphs in header (h.byte)
+000A: 00      -   minimum memory (l.byte)
+000B: 00      -   minimum memory (h.byte)
+000C: FF      -   maximum memory (l.byte)
+000D: FF      -   maximum memory (h.byte)
+000E: 00      -   SS - stack segment (l.byte)
+000F: 00      -   SS - stack segment (h.byte)
+0010: 00      -   SP - stack pointer (l.byte)
+0011: 01      -   SP - stack pointer (h.byte)
+0012: FD      -   check sum (l.byte)
+0013: 88      -   check sum (h.byte)
+0014: 33      -   IP - instruction pointer (l.byte)
+0015: 00      -   IP - instruction pointer (h.byte)
+0016: 19      -   CS - code segment (l.byte)
+0017: 00      -   CS - code segment (h.byte)
+0018: 1E      -   relocation table adress (l.byte)
+0019: 00      -   relocation table adress (h.byte)
+001A: 00      -   overlay number (l.byte)
+001B: 00      -   overlay number (h.byte)
+001C: 01      -   signature (l.byte)
+001D: 00      -   signature (h.byte)
+001E: 34      -   relocation table - offset inside segment (l.byte)
+001F: 00      -   relocation table - offset inside segment (h.byte)
+0020: 19      -   relocation table - segment anchor (l.byte)
+0021: 00      -   relocation table - segment anchor (h.byte)
+0022 to 01FF  -   reserved relocation area  (00) 
+
+
+
+
+===================================================================================================

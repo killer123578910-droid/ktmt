@@ -1,0 +1,116 @@
+EMU8086 GENERATED LISTING. MACHINE CODE <- SOURCE.
+ 
+innguocstack.exe_ -- emu8086 assembler version: 4.08  
+ 
+[ 16/4/2026  --  9:31:27 AM ] 
+ 
+===================================================================================================
+[LINE]     LOC: MACHINE CODE                          SOURCE
+===================================================================================================
+ 
+[   1]        :                                       .model small
+[   2]        :                                       .stack 100h
+[   3]        :                                       .data
+[   4]    0100: 0D 0A 24                              crlf db 13,10,"$"
+[   5]    0103: 6E 67 75 6F 68 68 68 6F 6A 6F 69 6F   ng db "nguohhhojoioioiijhgffhgfc: $"
+                69 6F 69 69 6A 68 67 66 66 68 67 66 
+                63 3A 20 24                         
+[   6]        :                                       
+[   7]        :                                       
+[   8]    011F: 00                                    str db 50dup("$")
+[   9]        :                                       
+[  10]        :                                       .code
+[  11]        :                                       
+[  12]        :                                       
+[  13]        :                                       
+[  14]        :                                       
+[  15]        :                                       
+[  16]    0120:                                       main proc
+[  17]    0120: B8 10 00                              mov ax,@data
+[  18]    0123: 8E D8                                 mov ds,ax
+[  19]        :                                       
+[  20]    0125: B9 00 00                              mov cx,0
+[  21]    0128: BE 1F 00                              lea si,str
+[  22]    012B:                                       lap:
+[  23]    012B: B4 01                                 mov ah,1
+[  24]    012D: CD 21                                 int 21h
+[  25]        :                                       
+[  26]    012F: 3C 23                                 cmp al,"#"
+[  27]    0131: 74 07                                 je break
+[  28]        :                                       
+[  29]    0133: 88 04                                 mov [si],al
+[  30]    0135: 46                                    inc si
+[  31]    0136: 41                                    inc cx
+[  32]        :                                       
+[  33]    0137: 50                                    push ax
+[  34]        :                                       
+[  35]        :                                       
+[  36]    0138: EB F1                                 jmp lap
+[  37]    013A:                                       break:
+[  38]    013A: B4 09                                 mov ah,9
+[  39]    013C: BA 00 00                              lea dx, crlf
+[  40]    013F: CD 21                                 int 21h
+[  41]        :                                       
+[  42]    0141: B4 09                                 mov ah,9
+[  43]    0143: BA 03 00                              lea dx, ng
+[  44]    0146: CD 21                                 int 21h
+[  45]        :                                       
+[  46]    0148:                                       delop:
+[  47]    0148: 58                                    pop ax
+[  48]        :                                       ;mov dh,0
+[  49]    0149: 8A D0                                 mov dl,al
+[  50]    014B: B4 02                                 mov ah,2
+[  51]    014D: CD 21                                 int 21h
+[  52]    014F: E2 F7                                 loop delop
+[  53]        :                                       
+[  54]        :                                       
+[  55]    0151: B4 4C                                 mov ah,4ch
+[  56]    0153: CD 21                                 int 21h
+[  57]        :                                       main endp
+[  58]        :                                       end main
+[  59]        :                                       
+ 
+===================================================================================================
+ 
+EXE HEADER - bytes from 0000 to 01FF inclusive.
+
+0000: 4D      -   exe signature (M)
+0001: 5A      -   exe signature (Z)
+0002: 55      -   bytes on last page (l.byte)
+0003: 01      -   bytes on last page (h.byte)
+0004: 02      -   512 byte pages in file (l.byte)
+0005: 00      -   512 byte pages in file (h.byte)
+0006: 01      -   relocations (l.byte)
+0007: 00      -   relocations (h.byte)
+0008: 20      -   paragraphs in header (l.byte)
+0009: 00      -   paragraphs in header (h.byte)
+000A: 00      -   minimum memory (l.byte)
+000B: 00      -   minimum memory (h.byte)
+000C: FF      -   maximum memory (l.byte)
+000D: FF      -   maximum memory (h.byte)
+000E: 00      -   SS - stack segment (l.byte)
+000F: 00      -   SS - stack segment (h.byte)
+0010: 00      -   SP - stack pointer (l.byte)
+0011: 01      -   SP - stack pointer (h.byte)
+0012: 88      -   check sum (l.byte)
+0013: 5E      -   check sum (h.byte)
+0014: 00      -   IP - instruction pointer (l.byte)
+0015: 00      -   IP - instruction pointer (h.byte)
+0016: 12      -   CS - code segment (l.byte)
+0017: 00      -   CS - code segment (h.byte)
+0018: 1E      -   relocation table adress (l.byte)
+0019: 00      -   relocation table adress (h.byte)
+001A: 00      -   overlay number (l.byte)
+001B: 00      -   overlay number (h.byte)
+001C: 01      -   signature (l.byte)
+001D: 00      -   signature (h.byte)
+001E: 01      -   relocation table - offset inside segment (l.byte)
+001F: 00      -   relocation table - offset inside segment (h.byte)
+0020: 12      -   relocation table - segment anchor (l.byte)
+0021: 00      -   relocation table - segment anchor (h.byte)
+0022 to 01FF  -   reserved relocation area  (00) 
+
+
+
+
+===================================================================================================

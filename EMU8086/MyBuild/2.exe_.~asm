@@ -1,0 +1,31 @@
+.model small
+.stack 100h
+.data
+crlf DB 13,10,"$"
+.code
+main proc
+mov ax,@data
+mov ds,ax
+
+mov ah,1
+int 21h   ;nhap 1 ki tu
+mov bl,al
+
+mov ah,9
+lea dx,crlf ; nhap cach dong
+int 21h
+
+mov dl,bl
+mov ah,2   ; in ki tu
+int 21h
+
+mov ah,4ch
+int 21h
+main endp
+
+
+
+
+
+
+; [SOURCE]: D:\ktmt\bainop\2.asm

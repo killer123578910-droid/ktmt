@@ -1,0 +1,5 @@
+frmTrafficLights = -175, 232, 355, 569, C, 66, 66, 596, 484, C
+io = -160, 124, 342, 451, C
+modSINGLE_INSTANCE = 0, 0, 0, 0, C
+mWinState = 0, 0, 0, 0, C
+modAlwaysOnTop = 22, 22, 552, 359, C

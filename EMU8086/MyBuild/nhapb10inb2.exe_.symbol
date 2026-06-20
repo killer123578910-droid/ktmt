@@ -1,0 +1,21 @@
+< THE SYMBOL TABLE >  nhapb10inb2.exe_  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+STACK                    	00000     	-5        	SEGMENT   	(ITSELF)  
+DATA                     	00010     	-5        	SEGMENT   	(ITSELF)  
+CRLF                     	00000     	1         	VAR       	data      
+X                        	00003     	2         	VAR       	data      
+Y                        	00005     	2         	VAR       	data      
+CODE                     	00011     	-5        	SEGMENT   	(ITSELF)  
+NHAPSO                   	00000     	-1        	NEAR      	code      
+LAP                      	00006     	-1        	LABEL     	code      
+BREAK                    	00026     	-1        	LABEL     	code      
+INSO                     	00027     	-1        	NEAR      	code      
+LAP1                     	00030     	-1        	LABEL     	code      
+KAWASHAKI                	0003C     	-1        	LABEL     	code      
+MAIN                     	00047     	-1        	NEAR      	code      
+===================================================================================================
+[ 16/4/2026  --  10:34:15 AM ] 
+< END >
+ 

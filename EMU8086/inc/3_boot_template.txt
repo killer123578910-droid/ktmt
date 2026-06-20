@@ -1,0 +1,19 @@
+; 512 bytes from cylinder: 0, head: 0, sector: 1
+; are copied to memory at 0000:7C00h 
+; IP register is set to this address
+
+
+#make_boot#
+
+org 7C00h      ; set location counter.
+
+
+      ; add your code here
+
+
+
+
+
+
+INT 19h        ; reboot
+

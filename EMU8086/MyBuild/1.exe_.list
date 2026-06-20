@@ -1,0 +1,156 @@
+EMU8086 GENERATED LISTING. MACHINE CODE <- SOURCE.
+ 
+1.exe_ -- emu8086 assembler version: 4.08  
+ 
+[ 14/5/2026  --  10:22:56 AM ] 
+ 
+===================================================================================================
+[LINE]     LOC: MACHINE CODE                          SOURCE
+===================================================================================================
+ 
+[   1]        :                                       .model small
+[   2]        :                                       .stack 100h
+[   3]        :                                       .data
+[   4]    0100: 00                                    n db ?
+[   5]    0101: 00 00                                 x dw ?
+[   6]    0103: 00 00                                 y dw ?
+[   7]    0105: 00 00 00 00                           sum dd ?
+[   8]    0109: 0D 0A 24                              crlf db  13,10,'$'
+[   9]        :                                       
+[  10]        :                                       
+[  11]    010C:                                       endl proc
+[  12]    010C: 50                                    push ax
+[  13]    010D: 52                                    push dx
+[  14]    010E: B4 09                                 mov ah,9
+[  15]    0110: BA 09 00                              lea dx,crlf
+[  16]    0113: CD 21                                 int 21h
+[  17]    0115: 5A                                    pop dx
+[  18]    0116: 58                                    pop ax
+[  19]    0117: C3                                    ret
+[  20]        :                                       endl endp
+[  21]        :                                       
+[  22]        :                                       
+[  23]    0118:                                       nhapso proc
+[  24]    0118: BB 0A 00                              mov bx,10
+[  25]    011B: C7 06 01 00 00 00                     mov x,0
+[  26]    0121:                                       nhap:
+[  27]    0121: B4 01                                 mov ah,1
+[  28]    0123: CD 21                                 int 21h
+[  29]    0125: 3C 0D                                 cmp al,13
+[  30]    0127: 74 18                                 je xong
+[  31]        :                                       
+[  32]    0129: 32 E4                                 xor ah,ah
+[  33]    012B: 2D 30 00                              sub ax,'0'
+[  34]    012E: 32 E4                                 xor ah,ah
+[  35]    0130: A3 03 00                              mov y,ax
+[  36]    0133: A1 01 00                              mov ax,x
+[  37]        :                                       
+[  38]    0136: F7 E3                                 mul bx
+[  39]    0138: 03 06 03 00                           add ax,y
+[  40]        :                                       
+[  41]    013C: A3 01 00                              mov x,ax
+[  42]    013F: EB E0                                 jmp nhap
+[  43]    0141:                                       xong:
+[  44]    0141: C3                                    ret
+[  45]        :                                       nhapso endp
+[  46]        :                                       
+[  47]        :                                       
+[  48]    0142:                                       addso proc
+[  49]    0142: A1 01 00                              mov ax,x
+[  50]    0145: 33 D2                                 xor dx,dx
+[  51]    0147: 03 06 05 00                           add ax,word ptr sum
+[  52]    014B: 13 16 07 00                           adc dx,word ptr sum+2
+[  53]    014F: A3 05 00                              mov word ptr sum,ax
+[  54]    0152: 89 16 07 00                           mov word ptr sum+2,dx
+[  55]    0156: C3                                    ret
+[  56]        :                                       addso endp
+[  57]        :                                       
+[  58]    0157:                                       inso proc
+[  59]    0157: A1 05 00                              mov ax,word ptr sum
+[  60]    015A: 8B 16 07 00                           mov dx, word ptr sum+2
+[  61]    015E: BB 0A 00                              mov bx,10
+[  62]    0161: 33 C9                                 xor cx,cx
+[  63]    0163:                                       inlap:
+[  64]    0163: F7 F3                                 div bx
+[  65]    0165: 52                                    push dx
+[  66]    0166: 41                                    inc cx
+[  67]    0167: 33 D2                                 xor dx,dx
+[  68]    0169: 3D 00 00                              cmp ax,0
+[  69]    016C: 75 F5                                 jne inlap
+[  70]    016E:                                       inre:
+[  71]    016E: 5A                                    pop dx
+[  72]    016F: 80 C2 30                              add dl,'0'
+[  73]    0172: B4 02                                 mov ah,2
+[  74]    0174: CD 21                                 int 21h
+[  75]    0176: E2 F6                                 loop inre
+[  76]    0178: C3                                    ret
+[  77]        :                                       inso endp
+[  78]    0179:                                       main proc
+[  79]    0179: B8 10 00                              mov ax,@data
+[  80]    017C: 8E D8                                 mov ds,ax
+[  81]        :                                       
+[  82]    017E: E8 97 FF                              call nhapso
+[  83]    0181: A1 01 00                              mov ax,x
+[  84]    0184: 8B C8                                 mov cx,ax
+[  85]    0186: E8 83 FF                              call endl
+[  86]    0189:                                       nan:
+[  87]    0189: E8 8C FF                              call nhapso
+[  88]    018C: E8 7D FF                              call endl
+[  89]    018F: E8 B0 FF                              call addso
+[  90]    0192: E2 F5                                 loop nan
+[  91]        :                                       
+[  92]    0194: E8 75 FF                              call endl
+[  93]        :                                       
+[  94]    0197: E8 BD FF                              call inso
+[  95]        :                                       
+[  96]    019A: B4 4C                                 mov ah,4ch
+[  97]    019C: CD 21                                 int 21h
+[  98]        :                                       main endp
+[  99]        :                                       end main
+[ 100]        :                                       
+[ 101]        :                                       
+ 
+===================================================================================================
+ 
+EXE HEADER - bytes from 0000 to 01FF inclusive.
+
+0000: 4D      -   exe signature (M)
+0001: 5A      -   exe signature (Z)
+0002: 9E      -   bytes on last page (l.byte)
+0003: 01      -   bytes on last page (h.byte)
+0004: 02      -   512 byte pages in file (l.byte)
+0005: 00      -   512 byte pages in file (h.byte)
+0006: 01      -   relocations (l.byte)
+0007: 00      -   relocations (h.byte)
+0008: 20      -   paragraphs in header (l.byte)
+0009: 00      -   paragraphs in header (h.byte)
+000A: 00      -   minimum memory (l.byte)
+000B: 00      -   minimum memory (h.byte)
+000C: FF      -   maximum memory (l.byte)
+000D: FF      -   maximum memory (h.byte)
+000E: 00      -   SS - stack segment (l.byte)
+000F: 00      -   SS - stack segment (h.byte)
+0010: 00      -   SP - stack pointer (l.byte)
+0011: 01      -   SP - stack pointer (h.byte)
+0012: 2C      -   check sum (l.byte)
+0013: C0      -   check sum (h.byte)
+0014: 79      -   IP - instruction pointer (l.byte)
+0015: 00      -   IP - instruction pointer (h.byte)
+0016: 10      -   CS - code segment (l.byte)
+0017: 00      -   CS - code segment (h.byte)
+0018: 1E      -   relocation table adress (l.byte)
+0019: 00      -   relocation table adress (h.byte)
+001A: 00      -   overlay number (l.byte)
+001B: 00      -   overlay number (h.byte)
+001C: 01      -   signature (l.byte)
+001D: 00      -   signature (h.byte)
+001E: 7A      -   relocation table - offset inside segment (l.byte)
+001F: 00      -   relocation table - offset inside segment (h.byte)
+0020: 10      -   relocation table - segment anchor (l.byte)
+0021: 00      -   relocation table - segment anchor (h.byte)
+0022 to 01FF  -   reserved relocation area  (00) 
+
+
+
+
+===================================================================================================

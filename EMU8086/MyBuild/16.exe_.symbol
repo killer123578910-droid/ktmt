@@ -1,0 +1,25 @@
+< THE SYMBOL TABLE >  16.exe_  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+STACK                    	00000     	-5        	SEGMENT   	(ITSELF)  
+DATA                     	00010     	-5        	SEGMENT   	(ITSELF)  
+CRLF                     	00000     	1         	VAR       	data      
+X                        	00003     	2         	VAR       	data      
+Y                        	00005     	2         	VAR       	data      
+SUM                      	00007     	2         	VAR       	data      
+CODE                     	00011     	-5        	SEGMENT   	(ITSELF)  
+ENDL                     	00000     	-1        	NEAR      	code      
+NHAPSO                   	0000C     	-1        	NEAR      	code      
+NHAP                     	0001D     	-1        	LABEL     	code      
+SKIPNHAP                 	0003B     	-1        	LABEL     	code      
+ADDSO                    	0003C     	-1        	NEAR      	code      
+INSO                     	00052     	-1        	NEAR      	code      
+INLAP                    	0005E     	-1        	LABEL     	code      
+INRE                     	00069     	-1        	LABEL     	code      
+MAIN                     	00074     	-1        	NEAR      	code      
+CONGSO                   	0007C     	-1        	LABEL     	code      
+===================================================================================================
+[ 4/5/2026  --  4:19:20 PM ] 
+< END >
+ 

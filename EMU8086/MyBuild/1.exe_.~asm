@@ -1,0 +1,104 @@
+.model small
+.stack 100h
+.data
+n db ?
+x dw ?
+y dw ?
+sum dd ?
+crlf db  13,10,'$'
+
+
+endl proc
+push ax
+push dx
+mov ah,9
+lea dx,crlf
+int 21h
+pop dx
+pop ax
+ret
+endl endp
+
+
+nhapso proc
+mov bx,10
+mov x,0
+nhap:
+mov ah,1
+int 21h
+cmp al,13
+je xong
+
+xor ah,ah
+sub ax,'0'
+xor ah,ah
+mov y,ax
+mov ax,x
+
+mul bx
+add ax,y
+
+mov x,ax
+jmp nhap
+xong:
+ret
+nhapso endp
+
+
+addso proc
+mov ax,x
+xor dx,dx
+add ax,word ptr sum
+adc dx,word ptr sum+2
+mov word ptr sum,ax
+mov word ptr sum+2,dx
+ret
+addso endp
+
+inso proc
+mov ax,word ptr sum
+mov dx, word ptr sum+2
+mov bx,10
+xor cx,cx
+inlap:
+div bx
+push dx
+inc cx
+xor dx,dx
+cmp ax,0
+jne inlap
+inre:
+pop dx
+add dl,'0'
+mov ah,2
+int 21h
+loop inre
+ret
+inso endp
+main proc
+mov ax,@data
+mov ds,ax
+
+call nhapso
+mov ax,x
+mov cx,ax
+call endl
+nan:
+call nhapso
+call endl
+call addso
+loop nan
+
+call endl
+
+call inso
+
+mov ah,4ch
+int 21h
+main endp
+end main
+
+
+
+
+; [SOURCE]: D:\ktmt\baitap\1.asm
