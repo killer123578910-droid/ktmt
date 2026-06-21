@@ -11,26 +11,18 @@ Bdau:
     JB NH30         ; If Temp < 30, turn OFF
     
     CMP AL, 40
-    JA LH40         ; If Temp > 40, turn ON
-    
-    JMP Xong1lan    
-
+    JA LH40         ; If Temp > 40, turn ON    
+      jmp Bdau 
 NH30: 
     MOV AL, 1      
     OUT 127, AL     ; Send 0 to Port 127 (Turns Thermometer heater OFF)
-    JMP Xong1lan
+    jmp Bdau 
 
 LH40: 
     XOR AL, AL       
     OUT 127, AL     ; Send 1 to Port 127 (Turns Thermometer heater ON)
-    JMP Xong1lan    
+    jmp Bdau     
 
-Xong1lan:
-    MOV CX, 50    
-Delay: 
-    NOP             
-    LOOP Delay      
-
-    JMP Bdau        
+      
 
 END Bdau
